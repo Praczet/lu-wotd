@@ -8,7 +8,7 @@ The whole idea of this extension was to have a Word of the Day displayed on my d
 
 More or less like this:
 
-![WOTD](docs/images/wotd.png)
+![WOTD](docs/images/luwotd-preview.png)
 
 This extension gets words from [LOD.lu](https://LOD.lu) and their awesome [API](https://lod.lu/api/lb/word-of-the-day).
 
@@ -18,13 +18,13 @@ This is my the very first extension I ever created and by analyzing Andrew's AZC
 
 ## Settings
 
-![Lu-Wotd Settings](docs/images/wotd-settings.png)
+![Lu-Wotd Settings](docs/images/luwotd-settings.png)
 
 For now the WotD position is set as (x,y) from the top left of the screen. (In the future I will make it work as relative position of the anchoring point such as TOP,RIGHT)
 
 As I said many thanks to Lod team for allowing using lod.lu API.
 
-![Lu-wotd About](docs/images/wotd-about.png)
+![Lu-wotd About](docs/images/luwotd-about.png)
 
 ## Installation
 
