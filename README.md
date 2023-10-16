@@ -42,7 +42,7 @@ Download the ZIP file and unpack it.
 unzip lu-wotd-main.zip
 cd src
 mkdir ~/.local/gnome-shell/extensions/lu-wotd@praczet.github.com
-cp -r * ~./local/gnome-shell/extensions
+cp -r * ~./local/gnome-shell/extensions/lu-wotd@praczet.github.com/
 ```
 ## Plans
 
