@@ -1,0 +1,12 @@
+{
+  "name": "Luxembourgish - Word Of The Day",
+  "description": "Displays Luxembourgish's The Word of the Day. It gets them (wotds) from LOD.lu",
+  "uuid": "lu-wotd@praczet.github.com",
+  "gettext-domain": "lu-wotd",
+  "settings-schema": "org.gnome.shell.extensions.lu-wotd",
+  "shell-version": [
+    "44"
+  ],
+  "version": 1,
+  "url": "https://github.com/praczet/lu-wotd"
+}

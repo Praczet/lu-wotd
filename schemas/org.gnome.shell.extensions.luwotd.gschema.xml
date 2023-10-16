@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.lu-wotd" path="/org/gnome/shell/extensions/lu-wotd/">
+    <!-- Last WOTD -->
+    <key type="s" name="last-word">
+      <default>"Wuert"</default>
+      <summary>Last Fetched WOTD</summary>
+      <description>Last Fetched WOTD</description>
+    </key>
+    <key type="s" name="last-en">
+      <default>"Word"</default>
+      <summary>EN WOTD</summary>
+      <description>Last Fetched English translation of WOTD</description>
+    </key>
+    <key type="s" name="last-fr">
+      <default>"Mot"</default>
+      <summary>FR WOTD</summary>
+      <description>Last Fetched French translation of WOTD</description>
+    </key>
+    <key type="s" name="last-de">
+      <default>"Wort"</default>
+      <summary>DE WOTD</summary>
+      <description>Last Fetched German translation of WOTD</description>
+    </key>
+    <key type="s" name="last-pt">
+      <default>"Palavra"</default>
+      <summary>PT WOTD</summary>
+      <description>Last Fetched Portuguese translation of WOTD</description>
+    </key>
+    <key type="t" name="last-fetch">
+      <default>0</default>
+      <summary>Last Time Fetched</summary>
+      <description>Last Time Fetched</description>
+    </key>
+    <!-- General settings -->
+    <key type="i" name="pos-x">
+      <default>200</default>
+      <summary>Position X</summary>
+      <description>Position X of the Lu Wotd (top-left: 0,0)</description>
+    </key>
+    <key type="i" name="pos-y">
+      <default>200</default>
+      <summary>Position Y</summary>
+      <description>Position Y of the Lu Wotd (top-left: 0,0)</description>
+    </key>
+    <key type="b" name="has-border">
+      <default>false</default>
+      <summary>Has Border</summary>
+      <description>Does the Lu Wotd have a border</description>
+    </key>
+    <key type="i" name="border-width">
+      <default>0</default>
+      <summary>Border width</summary>
+      <description>Border width of the Lu Wotd</description>
+    </key>
+    <key type="s" name="border-color">
+      <default>"#000000"</default>
+      <summary>Border color</summary>
+      <description>Border color of the Lu Wotd</description>
+    </key>
+    <key type="i" name="border-radius">
+      <default>0</default>
+      <summary>Border radius</summary>
+      <description>Border radius of the Lu Wotd</description>
+    </key>
+    <key type="b" name="has-background">
+      <default>false</default>
+      <summary>Has background</summary>
+      <description>Does the Lu Wotd have a background</description>
+    </key>
+    <key type="s" name="background-color">
+      <default>"#000000"</default>
+      <summary>Background color</summary>
+      <description>Background color of the Lu Wotd</description>
+    </key>
+    <key name="selected-languages" type="as">
+      <default>['en', 'fr']</default>
+      <summary>Selected Languages</summary>
+      <description>Select one or more languages for word translation.</description>
+    </key>
+    <!-- WOTD settings -->
+    <key type="i" name="wotd-font-size">
+      <default>50</default>
+      <summary>WOTD font size</summary>
+      <description>Font size for WOTD</description>
+    </key>
+    <key type="s" name="wotd-font-family">
+      <default>"OpenDyslexicAlta"</default>
+      <summary>WOTD font family</summary>
+      <description>Font family for WOTD</description>
+    </key>
+    <key type="s" name="wotd-font-color">
+      <default>"#ffffff"</default>
+      <summary>WOTD font color</summary>
+      <description>Font color for WOTD</description>
+    </key>
+    <key type="b" name="wotd-has-shadow">
+      <default>true</default>
+      <summary>WOTD has shadow</summary>
+      <description>Does the WOTD have a shadow</description>
+    </key>
+    <key type="s" name="wotd-shadow-color">
+      <default>"#000000"</default>
+      <summary>WOTD shadow color</summary>
+      <description>Shadow color for WOTD</description>
+    </key>
+    <key type="i" name="wotd-shadow-x">
+      <default>2</default>
+      <summary>WOTD shadow x</summary>
+      <description>Shadow x for WOTD</description>
+    </key>
+    <key type="i" name="wotd-shadow-y">
+      <default>2</default>
+      <summary>WOTD shadow y</summary>
+      <description>Shadow y for WOTD</description>
+    </key>
+    <key type="i" name="wotd-shadow-blur">
+      <default>2</default>
+      <summary>WOTD shadow blur</summary>
+      <description>Shadow blur for WOTD</description>
+    </key>
+    <key type="i" name="wotd-shadow-offset">
+      <default>0</default>
+      <summary>WOTD shadow offset</summary>
+      <description>Shadow offset for WOTD</description>
+    </key>
+    <!-- Meaning -->
+    <key type="i" name="meaning-font-size">
+      <default>30</default>
+      <summary>Meaning font size</summary>
+      <description>Font size for meaning</description>
+    </key>
+    <key type="s" name="meaning-font-family">
+      <default>"OpenDyslexicAlta"</default>
+      <summary>Meaning font family</summary>
+      <description>Font family for meaning</description>
+    </key>
+    <key type="s" name="meaning-font-color">
+      <default>"#cca2cf"</default>
+      <summary>Meaning font color</summary>
+      <description>Font color for meaning</description>
+    </key>
+    <key type="b" name="meaning-has-shadow">
+      <default>true</default>
+      <summary>Meaning has shadow</summary>
+      <description>Does the meaning have a shadow</description>
+    </key>
+    <key type="s" name="meaning-shadow-color">
+      <default>"#000000"</default>
+      <summary>Meaning shadow color</summary>
+      <description>Shadow color for meaning</description>
+    </key>
+    <key type="i" name="meaning-shadow-x">
+      <default>2</default>
+      <summary>Meaning shadow x</summary>
+      <description>Shadow x for meaning</description>
+    </key>
+    <key type="i" name="meaning-shadow-y">
+      <default>2</default>
+      <summary>Meaning shadow y</summary>
+      <description>Shadow y for meaning</description>
+    </key>
+    <key type="i" name="meaning-shadow-blur">
+      <default>2</default>
+      <summary>Meaning shadow blur</summary>
+      <description>Shadow blur for meaning</description>
+    </key>
+    <key type="i" name="meaning-shadow-offset">
+      <default>0</default>
+      <summary>Meaning shadow offset</summary>
+      <description>Shadow offset for meaning</description>
+    </key>
+  </schema>
+</schemalist>
