@@ -30,6 +30,11 @@ As I said many thanks to Lod team for allowing using lod.lu API.
 
 Hopefully it will be accessible from Gnome-extension website. For now you can install it manually.
 
+
+### Requirements 
+
+* [OpenDyslexic](https://opendyslexic.org/) - the default font that I use
+
 ### Gnome Extension Repository
 
 Not yet available.
