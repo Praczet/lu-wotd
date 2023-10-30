@@ -23,13 +23,12 @@
 
 const DEBUG_LOG = true;
 
-const { Gio, GLib, GObject, Graphene, Pango, St, Clutter, Gdk } = imports.gi;
+const { Gio, GLib, GObject, Graphene, Pango, St, Clutter } = imports.gi;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Main = imports.ui.main;
 const Me = ExtensionUtils.getCurrentExtension();
 const Mainloop = imports.mainloop;
-const Decoder = new TextDecoder("utf-8");
 
 /** This object contains the default settings. Exact information can be found in schemas/org.gnome.shell.extensions.luwotd.gschema.xml */
 const LuWOTD_Settings = {
@@ -79,7 +78,7 @@ const LuWOTD_Settings = {
  * @param {any} msg - Message to display
  */
 function debugLog(msg) {
-  if (DEBUG_LOG) log(msg);
+  if (DEBUG_LOG) console.debug(msg);
 }
 
 /** Label Class  used to display word of the day or translation */
@@ -439,6 +438,7 @@ var LuWidget = GObject.registerClass(
     }
 
     loadJsonFromUrl(url, callback) {
+      const Decoder = new TextDecoder("utf-8");
       debugLog(`Loading JSON from URL: ${url}`);
       const file = Gio.File.new_for_uri(url);
       file.load_contents_async(null, (file, result) => {
@@ -527,6 +527,7 @@ class LuWOTD {
       Mainloop.source_remove(this.retryTimer);
       this.retryTimer = 0;
     }
+    this.luWidget = null;
   }
 
   scheduleFetchAt(hour, minute) {

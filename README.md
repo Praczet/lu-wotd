@@ -55,9 +55,3 @@ cp -r * ~./local/gnome-shell/extensions/lu-wotd@praczet.github.com/
 2. Adding anchoring = TOP-LEFT, TOP-RIGHT, BOTTOM-LEFT, BOTTOM-RIGHT
 3. Adding Refresh button
 
-
-
-
-
-
-
