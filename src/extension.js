@@ -17,19 +17,25 @@
  *
  *
  * @author Adam Druzd (https://github.com/Praczet)
- * @version 1.0
- * @date 2023-10-05
+ * @version 2.0
+ * @date 2024-01-03
  */
 
 const DEBUG_LOG = true;
 
-const { Gio, GLib, GObject, Graphene, Pango, St, Clutter } = imports.gi;
+import Clutter from 'gi://Clutter';
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import Graphene from 'gi://Graphene';
+import Pango from 'gi://Pango';
+import St from 'gi://St';
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Main = imports.ui.main;
-const Me = ExtensionUtils.getCurrentExtension();
-const Mainloop = imports.mainloop;
-
+import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+// const Me = ExtensionUtils.getCurrentExtension();
+// const Mainloop = imports.mainloop;
+let SETTINGS, EXTENSION;
 /** This object contains the default settings. Exact information can be found in schemas/org.gnome.shell.extensions.luwotd.gschema.xml */
 const LuWOTD_Settings = {
   wotd_font_size: 50,
@@ -154,7 +160,7 @@ var LuWidget = GObject.registerClass(
 
       this.meanings = [];
       this.laoded = false;
-      this._settings = ExtensionUtils.getSettings();
+      this._settings = EXTENSION.getSettings();
       this.my_settings = {};
 
       this.langs = this.settings.get_strv("selected-languages") || ["en", "fr"];
@@ -173,7 +179,7 @@ var LuWidget = GObject.registerClass(
 
     get settings() {
       if (!this._settings) {
-        this._settings = ExtensionUtils.getSettings();
+        this._settings = SETTINGS;
       }
       return this._settings;
     }
@@ -494,13 +500,14 @@ var LuWidget = GObject.registerClass(
   },
 );
 
-class LuWOTD {
-  constructor() {
+export default class LuWOTD extends Extension {
+  enable() {
+    EXTENSION = this;
+    SETTINGS = this.getSettings();
+
     this.fetchTimer = 0;
     this.retryTimer = 0;
-  }
 
-  enable() {
     this.luWidget = new LuWidget();
 
     Main.layoutManager._backgroundGroup.add_child(this.luWidget);
@@ -520,11 +527,11 @@ class LuWOTD {
     Main.layoutManager._backgroundGroup.remove_child(this.luWidget);
     // Main.layoutManager.disconnectObject(this);
     if (this.fetchTimer > 0) {
-      Mainloop.source_remove(this.fetchTimer);
+      GLib.source_remove(this.fetchTimer);
       this.fetchTimer = 0;
     }
     if (this.retryTimer > 0) {
-      Mainloop.source_remove(this.retryTimer);
+      GLib.source_remove(this.retryTimer);
       this.retryTimer = 0;
     }
     this.luWidget = null;
@@ -548,7 +555,7 @@ class LuWOTD {
     const delay = targetTime - now;
 
     // Schedule the fetch timer
-    this.fetchTimer = Mainloop.timeout_add(delay, () => {
+    this.fetchTimer = GLib.timeout_add(GLib.PRIORITY_HIGH, delay, () => {
       // Fetch the word here
       this.fetchWord();
       return false; // Don't repeat the timer
@@ -556,7 +563,7 @@ class LuWOTD {
   }
 
   fetchWord() {
-    this.retryTimer = Mainloop.timeout_add(5000, () => {
+    this.retryTimer = GLib.timeout_add(GLib.PRIORITY_HIGH, 5000, () => {
       debugLog("fetchWord");
       // Fetch the word here
       if (!this.luWidget.hasTodayWord()) {
@@ -568,6 +575,3 @@ class LuWOTD {
   }
 }
 
-function init() {
-  return new LuWOTD();
-}

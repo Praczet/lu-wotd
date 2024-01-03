@@ -1,7 +1,10 @@
 
-const { Adw, GLib, GObject } = imports.gi;
 
-var DialogWindow = GObject.registerClass({
+import Adw from 'gi://Adw';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+
+export const DialogWindow = GObject.registerClass({
   Properties: {
     'widget-index': GObject.ParamSpec.int(
       'widget-index',

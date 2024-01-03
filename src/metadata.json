@@ -5,8 +5,8 @@
   "gettext-domain": "lu-wotd",
   "settings-schema": "org.gnome.shell.extensions.lu-wotd",
   "shell-version": [
-    "44"
+    "45"
   ],
-  "version": 3,
+  "version": 4,
   "url": "https://github.com/praczet/lu-wotd"
 }

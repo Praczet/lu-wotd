@@ -1,11 +1,12 @@
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
 
-const { Adw, Gdk, Gio, GLib, GObject, Gtk } = imports.gi;
+import Adw from 'gi://Adw';
+import GObject from 'gi://GObject';
+import Gtk from 'gi://Gtk';
+import GLib from 'gi://GLib';
+import * as Config from 'resource:///org/gnome/Shell/Extensions/js/misc/config.js';
 // const Gettext = imports.gettext.domain(Me.metadata['gettext-domain']);
 // const _ = Gettext.gettext;
-
 const PROJECT_DESCRIPTION = 'Add a Word of the Day to your Desktop';
 const PROJECT_IMAGE = 'logo-luwotd';
 const LOD_IMAGE = 'lod-logo';
@@ -15,14 +16,17 @@ const _ = (msg) => {
   return msg;
 }
 
-var AboutPage = GObject.registerClass(
+export const AboutPage = GObject.registerClass(
   class LuWOTDAboutPage extends Adw.PreferencesPage {
-    _init() {
+    _init(settings, metadata) {
       super._init({
         title: _('About'),
         icon_name: 'help-about-symbolic',
         name: 'AboutPage',
       });
+
+      this.settings = settings;
+
 
       const projectHeaderGroup = new Adw.PreferencesGroup();
       const projectHeaderBox = new Gtk.Box({
@@ -70,17 +74,17 @@ var AboutPage = GObject.registerClass(
         title: _('Lu-WotD Version'),
       });
       projectVersionRow.add_suffix(new Gtk.Label({
-        label: Me.metadata.version.toString(),
+        label: metadata.version.toString(),
         css_classes: ['dim-label'],
       }));
       infoGroup.add(projectVersionRow);
 
-      if (Me.metadata.commit) {
+      if (metadata.commit) {
         const commitRow = new Adw.ActionRow({
           title: _('Git Commit'),
         });
         commitRow.add_suffix(new Gtk.Label({
-          label: Me.metadata.commit.toString(),
+          label: metadata.commit.toString(),
           css_classes: ['dim-label'],
         }));
         infoGroup.add(commitRow);
@@ -90,7 +94,7 @@ var AboutPage = GObject.registerClass(
         title: _('GNOME Version'),
       });
       gnomeVersionRow.add_suffix(new Gtk.Label({
-        label: imports.misc.config.PACKAGE_VERSION.toString(),
+        label: Config.PACKAGE_VERSION.toString(),
         css_classes: ['dim-label'],
       }));
       infoGroup.add(gnomeVersionRow);
@@ -117,7 +121,7 @@ var AboutPage = GObject.registerClass(
       }));
       infoGroup.add(sessionTypeRow);
 
-      const gitlabRow = this._createLinkRow(_('Lu-WotD on Github'), Me.metadata.url);
+      const gitlabRow = this._createLinkRow(_('Lu-WotD on Github'), metadata.url);
       infoGroup.add(gitlabRow);
 
       // const donateRow = this._createLinkRow(_('Donate via PayPal'), PAYPAL_LINK);
@@ -133,11 +137,10 @@ var AboutPage = GObject.registerClass(
       const lastWOTDRow = new Adw.ActionRow({
         title: _('Last fetched Word of the Day'),
       });
-      const settings = ExtensionUtils.getSettings();
 
-      const sLastWord = settings.get_string('last-word') || "Error";
+      const sLastWord = this.settings.get_string('last-word') || "Error";
 
-      const currentTimestamp = settings.get_uint64('last-fetch') || 0;
+      const currentTimestamp = this.settings.get_uint64('last-fetch') || 0;
       const currentDateTime = GLib.DateTime.new_from_unix_utc(currentTimestamp);
 
       // const lwEn = settings.get_string('last-en') || "~en";
