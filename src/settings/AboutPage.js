@@ -1,12 +1,9 @@
-
-
 import Adw from 'gi://Adw';
 import GObject from 'gi://GObject';
 import Gtk from 'gi://Gtk';
 import GLib from 'gi://GLib';
 import * as Config from 'resource:///org/gnome/Shell/Extensions/js/misc/config.js';
-// const Gettext = imports.gettext.domain(Me.metadata['gettext-domain']);
-// const _ = Gettext.gettext;
+
 const PROJECT_DESCRIPTION = 'Add a Word of the Day to your Desktop';
 const PROJECT_IMAGE = 'logo-luwotd';
 const LOD_IMAGE = 'lod-logo';
@@ -124,9 +121,6 @@ export const AboutPage = GObject.registerClass(
       const gitlabRow = this._createLinkRow(_('Lu-WotD on Github'), metadata.url);
       infoGroup.add(gitlabRow);
 
-      // const donateRow = this._createLinkRow(_('Donate via PayPal'), PAYPAL_LINK);
-      // infoGroup.add(donateRow);
-
       this.add(infoGroup);
 
 
@@ -142,11 +136,6 @@ export const AboutPage = GObject.registerClass(
 
       const currentTimestamp = this.settings.get_uint64('last-fetch') || 0;
       const currentDateTime = GLib.DateTime.new_from_unix_utc(currentTimestamp);
-
-      // const lwEn = settings.get_string('last-en') || "~en";
-      // const lwDe = settings.get_string('last-de') || "~de";
-      // const lwFr = settings.get_string('last-fr') || "~fr";
-      // const lwPt = settings.get_string('last-pt') || "~pt";
 
       lastWOTDRow.add_suffix(new Gtk.Label({
         label: sLastWord,
@@ -307,7 +296,8 @@ export const AboutPage = GObject.registerClass(
 
       dialog.show();
     }
-  });
+  }
+);
 
 const GNU_SOFTWARE = '<span size="small">' +
   'This program comes with absolutely no warranty.\n' +

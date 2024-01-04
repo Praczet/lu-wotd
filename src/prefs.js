@@ -1,36 +1,16 @@
-// import Clutter from 'gi://Clutter';
-import Gio from 'gi://Gio';
-import GLib from 'gi://GLib';
 import Adw from 'gi://Adw';
 import GObject from 'gi://GObject';
 import Gdk from 'gi://Gdk';
 import Gtk from 'gi://Gtk';
-// import Graphene from 'gi://Graphene';
-// import Pango from 'gi://Pango';
-// import St from 'gi://St';
 
 import { ExtensionPreferences } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
-// import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
-// import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
-// const ExtensionUtils = imports.misc.extensionUtils;
-// const Me = ExtensionUtils.getCurrentExtension();
+import { AboutPage as AboutPage } from './settings/AboutPage.js';
 
-// const { Adw, Gdk, Gio, GLib, GObject, Gtk } = imports.gi;
-// const Gettext = imports.gettext.domain(Me.metadata['gettext-domain']);
-// const _ = Gettext.gettext;
 // TODO: Add proper translatation
 const _ = (msg) => {
   return msg;
 }
 
-// const { AboutPage } = Me.imports.settings.AboutPage;
-//
-import { AboutPage as AboutPage } from './settings/AboutPage.js';
-// import { DialogWindow as DialogWindow } from './settings/DialogWindow.js';
-//
-// const { DialogWindow } = Me.imports.settings.DialogWindow;
-// const {WidgetsData} = Me.imports.settings.WidgetsData;
-// const {WidgetSettingsPage} = Me.imports.settings.WidgetSettingsPage;
 const languages = [
   { code: 'en', name: 'English' },
   { code: 'de', name: 'German' },
@@ -38,9 +18,6 @@ const languages = [
   { code: 'pt', name: 'Portuguese' },
 ];
 
-// function init() {
-//   // ExtensionUtils.initTranslations();
-// }
 
 export default class LuWOTDPreferences extends ExtensionPreferences {
   fillPreferencesWindow(window) {
@@ -50,20 +27,16 @@ export default class LuWOTDPreferences extends ExtensionPreferences {
 
     const settings = this.getSettings();
 
-
     const homePage = new HomePage(settings);
     window.add(homePage);
 
     const aboutPage = new AboutPage(settings, this.metadata);
     window.add(aboutPage);
 
-    // window.connect('close-request', () => {
-    //     widgetsData.destroy();
-    // });
   }
 }
 
-var HomePage = GObject.registerClass(
+const HomePage = GObject.registerClass(
   class LuWOTDHomePage extends Adw.PreferencesPage {
     _init(settings) {
       super._init({

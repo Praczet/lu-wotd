@@ -30,16 +30,15 @@ As I said many thanks to Lod team for allowing using lod.lu API.
 
 Hopefully it will be accessible from Gnome-extension website. For now you can install it manually.
 
+### Requirements
 
-### Requirements 
-
-* [OpenDyslexic](https://opendyslexic.org/) - the default font that I use
+- [OpenDyslexic](https://opendyslexic.org/) - the default font that I use
 
 ### Gnome Extension Repository
 
 Not yet available.
 
-### Manual 
+### Manual
 
 Download the ZIP file and unpack it.
 
@@ -49,9 +48,9 @@ cd src
 mkdir ~/.local/gnome-shell/extensions/lu-wotd@praczet.github.com
 cp -r * ~./local/gnome-shell/extensions/lu-wotd@praczet.github.com/
 ```
+
 ## Plans
 
 1. Adding translation (for now it has fake approach for it)
 2. Adding anchoring = TOP-LEFT, TOP-RIGHT, BOTTOM-LEFT, BOTTOM-RIGHT
 3. Adding Refresh button
-

@@ -33,9 +33,9 @@ import St from 'gi://St';
 
 import { Extension, gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-// const Me = ExtensionUtils.getCurrentExtension();
-// const Mainloop = imports.mainloop;
+
 let SETTINGS, EXTENSION;
+
 /** This object contains the default settings. Exact information can be found in schemas/org.gnome.shell.extensions.luwotd.gschema.xml */
 const LuWOTD_Settings = {
   wotd_font_size: 50,
@@ -88,7 +88,7 @@ function debugLog(msg) {
 }
 
 /** Label Class  used to display word of the day or translation */
-var Label = GObject.registerClass(
+const Label = GObject.registerClass(
   class LuWOTDLabel extends St.Label {
     _init() {
       super._init({
@@ -119,7 +119,7 @@ var Label = GObject.registerClass(
 );
 
 /** In fact it could be as part of the Label Class, but for the future it is better to use TextLabel */
-var TextLabel = GObject.registerClass(
+const TextLabel = GObject.registerClass(
   class LuWOTDTextLabel extends Label {
     _init() {
       super._init();
@@ -144,7 +144,7 @@ var TextLabel = GObject.registerClass(
   },
 );
 
-var LuWidget = GObject.registerClass(
+const LuWidget = GObject.registerClass(
   class LuWOTDWidget extends St.Widget {
     _init() {
       super._init({
@@ -173,8 +173,6 @@ var LuWidget = GObject.registerClass(
       this.meaningsURI = "https://lod.lu/api/en/entry/";
       this.wotdArticleURI = "https://lod.lu/artikel/";
 
-      // this.wotdURI = "http://localhost/word-of-the-day/word-of-the-day.json";
-      // this.meaningsURI = "http://localhost/word-of-the-day/";
     }
 
     get settings() {
@@ -307,10 +305,6 @@ var LuWidget = GObject.registerClass(
     createElements() {
       this.destroy_all_children();
       this.setOwnStyle();
-      // const display = new Gdk.Display().get_default();
-      // debugLog(display);
-      // const resolution = monitor.get_resolution();
-      // debugLog(resolution.toString());
 
       let defaultWord = this.settings.get_string("last-word") || "Error";
       let defaultLangs = [
@@ -535,6 +529,8 @@ export default class LuWOTD extends Extension {
       this.retryTimer = 0;
     }
     this.luWidget = null;
+    EXTENSION = null;
+    SETTINGS = null;
   }
 
   scheduleFetchAt(hour, minute) {
